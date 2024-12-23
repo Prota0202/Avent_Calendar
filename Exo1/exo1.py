@@ -1,4 +1,4 @@
-file_path = "C:\\Users\\AbdelBadi\\Desktop\\algo\\1.txt"
+file_path = "C:\\Users\\AbdelBadi\\Desktop\\Avent_Calendar\\Avent_Calendar\\Exo1\\1.txt"
 data = open(file_path, "r")
 
 gauche = []
