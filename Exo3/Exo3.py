@@ -1,28 +1,19 @@
-fichier = open('C:\\Users\\AbdelBadi\\Desktop\\Avent_Calendar\\Avent_Calendar\\Exo3\\3.txt', "r")
+data = open('C:\\Users\\AbdelBadi\\Desktop\\Avent_Calendar\\Avent_Calendar\\Exo3\\3.txt').read()
 
-somme = 0
+import re
 
-for ligne in fichier:
-    indice = ligne.find("mul(")
-    while indice != -1:
-        indice = indice + 4
-        n1 = 0
-        taille = 0
-        while '0' <= ligne[indice + taille] <= '9':
-            n1 = n1 * 10 + int(ligne[indice + taille])
-            taille += 1
-            
-        if (ligne[indice + taille] == ',' and n1 < 1000):
-            n2 = 0
-            taille += 1
-            while '0' <= ligne[indice + taille] <= '9':
-                n2 = n2 * 10 + int(ligne[indice + taille])
-                taille += 1
-            
-            if (ligne[indice + taille] == ')' and n2 < 1000):
-                somme += n1 * n2
-        
-        ligne = ligne[indice + taille:]    
-        indice = ligne.find("mul(")
-        
-print(somme)
+def extract_and_calculate(data):
+    pattern = r"mul\((\d{1,3}),(\d{1,3})\)"
+
+    matches = re.findall(pattern, data)
+
+    total = 0
+    for match in matches:
+        x, y = map(int, match)  # Convertir les chaînes en entiers
+        total += x * y
+
+    return total
+
+
+result = extract_and_calculate(data)
+print(result)
